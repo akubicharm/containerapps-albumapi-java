@@ -3,10 +3,17 @@ package examples.azure.containerappsalbumapijava;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.AllPermission;
 import java.util.List;
 
 @RestController
 public class AlbumController {
+
+    private final AlbumRepository albumRepository;
+
+    public AlbumController(AlbumRepository albumRepository) {
+        this.albumRepository = albumRepository;
+    }
 
     @GetMapping("/")
     public String home() {
@@ -14,7 +21,12 @@ public class AlbumController {
     }
 
     @GetMapping("/albums")
-    List<Album> getAllAlbums() {
+    List <Album> getAllAlbums() {
+        return (List<Album>) albumRepository.findAll();
+    }
+
+    @GetMapping("/albumslocal")
+    List<Album> getAllAlbumsLocal() {
         return List.of(new Album(1, "You, Me and an App Id", "Daprize", 10.99, "https://aka.ms/albums-daprlogo"),
                 new Album(2, "Seven Revision Army", "The Blue-Green Stripes", 13.99, "https://aka.ms/albums-containerappslogo"),
                 new Album(3, "Scale It Up", "KEDA Club", 13.99, "https://aka.ms/albums-kedalogo"),

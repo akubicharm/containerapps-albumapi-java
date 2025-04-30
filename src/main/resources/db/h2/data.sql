@@ -1,0 +1,7 @@
+INSERT INTO album (id, title, artist, price, book_url, image_url) VALUES
+(1, 'OpenShift Virtualizationサーバ仮想化実践ガイド', '石川 純平/大村 真樹', 3080, 'https://book.impress.co.jp/books/1124101080', 'https://img.ips.co.jp/ij/24/1124101080/1124101080-520x.jpg'),
+(2, 'インフラの構成管理と自動化のための実践Ansible', '八木澤健人/呉理沙/小野天平/長嶺精彦/山中裕史', 3960, 'https://www.shuwasystem.co.jp/book/9784798068725.html', 'https://www.shuwasystem.co.jp/images/book/647676.jpg'),
+(3, 'OpenShift徹底入門', 'レッドハット株式会社', 4180, 'https://www.shoeisha.co.jp/book/detail/9784798172552', 'https://www.seshop.com/static/images/product/24696/L.png'),
+(4, 'Podmanイン・アクション', 'Daniel Walsh', 4180, 'https://www.shuwasystem.co.jp/book/9784798070209.html', 'https://www.shuwasystem.co.jp//images/book/633833.jpg'),
+(5, 'バージョン8＆9両対応！ Red Hat Enterprise Linux完全ガイド', '小島啓史/平初/田中司恩/橋本賢弥/八木澤健人/米山和重', 4950, 'https://info.nikkeibp.co.jp/media/LIN/atcl/books/082200035/', 'https://cdn-info.nikkeibp.co.jp/media/LIN/atcl/books/082200035/top.jpg?__scale=w:250,h:322&_sh=0990b30450'),
+(6, 'Quarkus in Action (Free eBook Edition)', 'Martin Stefanko/Jan Martiska', 0, 'https://developers.redhat.com/e-books/quarkus-action?extIdCarryOver=true&sc_cid=701f2000001Css5AAC', 'https://developers.redhat.com/sites/default/files/styles/cheat_sheet_feature/public/E-book%20cover%20graphic_Quarkus%20in%20Action.jpg.webp?itok=xZlT_iv4');

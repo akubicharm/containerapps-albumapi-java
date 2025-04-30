@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: registry.redhat.io/rhel9/postgresql-16
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_PASSWORD=album
+      - POSTGRESQL_USER=album
+      - POSTGRESQL_DATABASE=album
+    profiles:
+      - postgres
