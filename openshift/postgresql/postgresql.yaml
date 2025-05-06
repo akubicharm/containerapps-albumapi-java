@@ -12,6 +12,7 @@ items:
     database-name: album
     database-password: album
     database-user: album
+    database-url: jdbc:postgresql://postgresql:5432/album
 - apiVersion: v1
   kind: Service
   metadata:
@@ -28,7 +29,7 @@ items:
       protocol: TCP
       targetPort: 5432
     selector:
-      name: postgresql
+      deployment: postgresql
     sessionAffinity: None
     type: ClusterIP
   status:

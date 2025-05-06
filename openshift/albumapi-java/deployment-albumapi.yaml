@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"albumapi:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"albumapi\")].image"}]'
+  labels:
+    app: albumapi
+    app.kubernetes.io/component: albumapi
+    app.kubernetes.io/instance: albumapi
+  name: albumapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: albumapi
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        deployment: albumapi
+    spec:
+      containers:
+      - image: 'albumapi:latest'
+        name: albumapi
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        env:
+        - name: spring_profiles_active
+          value: postgresql
+        - name: POSTGRESQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: postgresql
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: postgresql
+        - name: POSTGRESQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              key: database-name
+              name: postgresql
+        - name: POSTGRESQL_URL
+          valueFrom:
+            secretKeyRef:
+              key: database-url
+              name: postgresql                        
+        resources: {}
