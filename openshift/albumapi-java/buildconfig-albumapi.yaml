@@ -70,7 +70,7 @@ items:
     triggers:
     - github:
         secret: tIYft83DPHZJ5Rq2UiK_
-      type: GitHub
+      type: GitHubおc
     - generic:
         secret: z9h_FFkzAHVVM2jj1lvr
       type: Generic
