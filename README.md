@@ -8,7 +8,7 @@ graph TD;
   AlbumAPI-->PostgreSQL
 ```
 
-#　ローカル環境
+# ローカル環境
 ## ビルド
 
 データベースサーバにはデフォルトでは h2 が利用されますが、Postgresql も利用可能です。
@@ -30,8 +30,19 @@ mvn spring-boot:run
 Postresql を利用する場合は、コンテナでPostgresqlを実行後、アプリケーションを起動します。
 ```
 podman compose --file docker-compose.yaml up postgres
+```
+
+```
+mvn -Ppostgresql spring-boot:run
+or
+export spring_profiles_active=postgresql
 mvn spring-boot:run
 ```
+
+## 動作確認
+
+http://localhost:8080/albums にアクセスして、JSON形式で書籍の一覧が表示されることを確認します。
+
 
 # ローカルコンテナ環境
 
