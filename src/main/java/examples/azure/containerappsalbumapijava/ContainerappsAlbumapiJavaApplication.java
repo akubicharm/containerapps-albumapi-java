@@ -9,5 +9,4 @@ public class ContainerappsAlbumapiJavaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ContainerappsAlbumapiJavaApplication.class, args);
 	}
-
 }

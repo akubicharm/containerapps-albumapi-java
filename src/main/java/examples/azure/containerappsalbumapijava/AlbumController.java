@@ -3,20 +3,27 @@ package examples.azure.containerappsalbumapijava;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.AllPermission;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @RestController
 public class AlbumController {
 
+    private static final Logger logger = LoggerFactory.getLogger(AlbumController.class);
+
     private final AlbumRepository albumRepository;
 
     public AlbumController(AlbumRepository albumRepository) {
+        logger.debug("init");
         this.albumRepository = albumRepository;
     }
 
     @GetMapping("/")
     public String home() {
+        logger.info("home");
         return "Please visit /albums to see a list of albums.";
     }
 

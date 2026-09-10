@@ -1,17 +1,12 @@
 package examples.azure.containerappsalbumapijava;
 
 import java.io.Serializable;
-import java.lang.annotation.Inherited;
-
-import javax.annotation.processing.Generated;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
 
 @Entity
 @Table(name = "album")
@@ -20,11 +15,9 @@ public class Album implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
     @Column(name = "title")
     private String title;
 
-    @NotBlank
     @Column(name = "artist")
     private String artist;
 
