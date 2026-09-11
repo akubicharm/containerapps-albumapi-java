@@ -7,5 +7,3 @@ services:
       - POSTGRESQL_PASSWORD=album
       - POSTGRESQL_USER=album
       - POSTGRESQL_DATABASE=album
-    profiles:
-      - postgres

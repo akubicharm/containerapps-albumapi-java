@@ -96,4 +96,21 @@ public class Album implements Serializable{
     public void setBook_url(String book_url) {
         this.book_url = book_url;
     }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override 
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        else if (o != null && !(o instanceof Album)) {
+            return false;
+        }
+
+        return (this.id == ((Album)o).getId());
+    }
 }
