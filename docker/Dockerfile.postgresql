@@ -1,0 +1,4 @@
+# Runtime stage
+FROM registry.redhat.io/rhel9/postgresql-16
+COPY psql_init_db.sh /usr/share/container-scripts/postgresql/start/
+COPY init.sql /opt/app-root/src
