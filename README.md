@@ -11,10 +11,6 @@ graph TD;
 # ローカル環境
 ## ビルド
 
-データベースサーバにはデフォルトでは h2 が利用されますが、Postgresql も利用可能です。
-`spring.profiles.active=postgresql` とすることで、Postgresqlに接続するようになます。
-`src/main/resources/applications.properties` を編集するか、実行時のオプションでプロファイルを切り替えてください。
-
 ```sh
 mvn package
 ```
@@ -26,11 +22,18 @@ mvn surefire-report:report-only
 
 ## テスト
 
-src/test/resources/application.properties は h2 データベースを利用するように設定してあります。
+`src/test/resources/application.properties` は h2 データベースを利用するように設定してあります。
+`mvn test` では、データベースサーバにはデフォルトでは h2 が利用されます。
+postgresql を利用する場合は、`mvn -Dsprig.profiles.active=postgresql test` とオプションでプロファイル指定をしてください。
+
+TestContainers は　Docker でコンテナを起動することを想定しているので、podman を利用している場合は、
+docker-compose.yaml を使って Postgresql を起動してからテストを実行してください。
+
 
 ## 実行
 
-h2 データベースを利用する場合：
+'src/main/resources/application.properties` は Postgresql を利用するように設定してあります。　
+h2 を利用する場合は　-Dspring.profiles.active=h2 と実行時に指定してください。
 
 ```sh
 mvn spring-boot:run
@@ -38,15 +41,19 @@ mvn spring-boot:run
 
 Postresql を利用する場合は、コンテナでPostgresqlを実行後、アプリケーションを起動します。
 ```
-podman compose --file docker-compose.yaml up
+podman compose up
 ```
 
 ```
-mvn -Ph2 spring-boot:run
-or
-export spring_profiles_active=h2
 mvn spring-boot:run
 ```
+
+albumapi, Postgres 両方ともコンテナとして実行する場合は `docker/docker-compose.yaml` を利用して実行してください。
+
+```
+podman compose up
+```
+
 
 ## 動作確認
 
@@ -68,13 +75,13 @@ podman build . -f docker/Dockerfile.build -v $HOME/.m2:/home/default/.m2 -t albu
 ローカルでビルドして、その成果物をコンテナにする場合
 ```
 mvn package
-podman build . -f docker/Dockerfile -t albumapi-java
+podman build . -f docker/Dockerfile -t albumapi:jdk21
 ```
 ※ ビルドするプラットフォームと実行するプラットフォームが異なる場合は `--platform linux/amd64` などのオプションをつける
 
 ## 実行
 ```
-podman run -p 8080:8080 albumapi-java
+podman run -p 8080:8080 albumapi
 ```
 
 # OpenShift環境

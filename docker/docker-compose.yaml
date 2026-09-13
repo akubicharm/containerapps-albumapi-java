@@ -1,15 +1,15 @@
 services:
-  # albumapi:
-  #   container_name: albumapi
-  #   image: albumapi:jdk21
-  #   ports:
-  #     - "8080:8080"
-  #   env_file:
-  #     - app.env
-  #   environment:
-  #     - SPRING_LOG_LEVEL=TRACE
-  #   networks:
-  #     - web        
+  albumapi:
+    container_name: albumapi
+    image: albumapi:jdk21
+    ports:
+      - "8080:8080"
+    env_file:
+      - app.env
+    environment:
+      - SPRING_LOG_LEVEL=TRACE
+    networks:
+      - web        
 
   postgres:
     container_name: postgresql
