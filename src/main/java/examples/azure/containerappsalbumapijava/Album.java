@@ -1,9 +1,6 @@
 package examples.azure.containerappsalbumapijava;
 
 import java.io.Serializable;
-import java.lang.annotation.Inherited;
-
-import javax.annotation.processing.Generated;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,30 +28,32 @@ public class Album implements Serializable{
     @Column(name = "price")
     private double price;
 
-    @Column(name = "image_url")
-    private String image_url;
+    @Column(name = "imageUrl")
+    private String imageUrl;
 
-    @Column(name = "book_url")
-    private String book_url;
+    @Column(name = "bookUrl")
+    private String bookUrl;
 
     public Album() {
     }
 
-    public Album(int id, String title, String artist, double price, String image_url) {
+    public Album(int id, String title, String artist, double price, String imageUrl)  {
+        checkPrice(price);
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.price = price;
-        this.image_url = image_url;
+        this.imageUrl = imageUrl;
     }    
 
-    public Album(int id, String title, String artist, double price, String image_url, String book_url) {
+    public Album(int id, String title, String artist, double price, String imageUrl, String bookUrl) {
+        checkPrice(price);
         this.id = id;
         this.title = title;
         this.artist = artist;
         this.price = price;
-        this.image_url = image_url;
-        this.book_url = book_url;
+        this.imageUrl = imageUrl;
+        this.bookUrl = bookUrl;
     }
 
     public int getId() {
@@ -69,7 +68,7 @@ public class Album implements Serializable{
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title){
         this.title = title;
     }
 
@@ -86,21 +85,46 @@ public class Album implements Serializable{
     }
 
     public void setPrice(double price) {
+        checkPrice(price);
         this.price = price;
     }
 
     public String getImage_url() {
-        return image_url;
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImage_url(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getBook_url() {
-        return book_url;
+        return bookUrl;
     }
-    public void setBook_url(String book_url) {
-        this.book_url = book_url;
+    public void setBook_url(String bookUrl) {
+        this.bookUrl = bookUrl;
+    }
+
+    @Override 
+    public int hashCode() {
+        return id;
+    }
+
+    @Override 
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        else if (o != null && !(o instanceof Album)) {
+            return false;
+        }
+
+        return (this.id == ((Album)o).getId());
+    }
+
+
+    private void checkPrice(double price) {
+        if (price < 0)  {
+            throw new IllegalArgumentException("The value is negative.");
+        }
     }
 }

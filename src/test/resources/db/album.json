@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "OpenShift Virtualizationサーバ仮想化実践ガイド",
+        "artist": "石川 純平/大村 真樹",
+        "price": 3080,
+        "book_url": "https://book.impress.co.jp/books/1124101080",
+        "image_url": "https://img.ips.co.jp/ij/24/1124101080/1124101080-520x.jpg"
+    },
+    {
+        "id": 2,
+        "title": "インフラの構成管理と自動化のための実践Ansible",
+        "artist": "八木澤健人/呉理沙/小野天平/長嶺精彦/山中裕史",
+        "price": 3960,
+        "book_url": "https://www.shuwasystem.co.jp/book/9784798068725.html",
+        "image_url": "https://www.shuwasystem.co.jp/images/book/647676.jpg"
+    },
+    {
+        "id": 3,
+        "title": "OpenShift徹底入門",
+        "artist": "レッドハット株式会社",
+        "price": 4180,
+        "book_url": "https://www.shoeisha.co.jp/book/detail/9784798172552",
+        "image_url": "https://www.seshop.com/static/images/product/24696/L.png"
+    },
+    {
+        "id": 4,
+        "title": "Podmanイン・アクション",
+        "artist": "Daniel Walsh",
+        "price": 4180,
+        "book_url": "https://www.shuwasystem.co.jp/book/9784798070209.html",
+        "image_url": "https://www.shuwasystem.co.jp//images/book/633833.jpg"
+    },
+    {
+        "id": 5,
+        "title": "バージョン8＆9両対応！ Red Hat Enterprise Linux完全ガイド",
+        "artist": " 小島啓史/平初/田中司恩/橋本賢弥/八木澤健人/米山和重",
+        "price": 4950,
+        "book_url": "https://info.nikkeibp.co.jp/media/LIN/atcl/books/082200035/",
+        "image_url": "https://cdn-info.nikkeibp.co.jp/media/LIN/atcl/books/082200035/top.jpg?__scale=w:250,h:322&_sh=0990b30450"
+    },
+    {
+        "id": 6,
+        "title": "Quarkus in Action (Free eBook Edition)",
+        "artist": "Martin Stefanko/Jan Martiska",
+        "price": 0,
+        "book_url": "https://developers.redhat.com/e-books/quarkus-action?extIdCarryOver=true&sc_cid=701f2000001Css5AAC",
+        "image_url": "https://developers.redhat.com/sites/default/files/styles/cheat_sheet_feature/public/E-book%20cover%20graphic_Quarkus%20in%20Action.jpg.webp?itok=xZlT_iv4"
+    }
+]

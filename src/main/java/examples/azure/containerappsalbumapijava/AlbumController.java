@@ -3,7 +3,6 @@ package examples.azure.containerappsalbumapijava;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.AllPermission;
 import java.util.List;
 
 @RestController

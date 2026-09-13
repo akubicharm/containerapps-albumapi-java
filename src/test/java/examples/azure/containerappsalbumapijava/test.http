@@ -1,0 +1,15 @@
+@host = http://localhost:8080
+
+
+###
+GET {{host}}/
+
+
+###
+GET {{host}}/albums
+Content-Type: application/json
+
+
+###
+GET {{host}}/albumslocal
+Content-Type: application/json
