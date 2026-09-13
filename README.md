@@ -19,6 +19,15 @@ graph TD;
 mvn package
 ```
 
+JUnitのレポート作成は
+```
+mvn surefire-report:report-only
+```
+
+## テスト
+
+src/test/resources/application.properties は h2 データベースを利用するように設定してあります。
+
 ## 実行
 
 h2 データベースを利用する場合：
@@ -29,13 +38,13 @@ mvn spring-boot:run
 
 Postresql を利用する場合は、コンテナでPostgresqlを実行後、アプリケーションを起動します。
 ```
-podman compose --file docker-compose.yaml up postgres
+podman compose --file docker-compose.yaml up
 ```
 
 ```
-mvn -Ppostgresql spring-boot:run
+mvn -Ph2 spring-boot:run
 or
-export spring_profiles_active=postgresql
+export spring_profiles_active=h2
 mvn spring-boot:run
 ```
 
@@ -50,7 +59,7 @@ http://localhost:8080/albums にアクセスして、JSON形式で書籍の一�
 
 
 ```
-podman build . -f docker/Dockerfile -v $HOME/.m2:/home/default/.m2 -t albumapi-java 
+podman build . -f docker/Dockerfile.build -v $HOME/.m2:/home/default/.m2 -t albumapi:jdk21
 ```
 ※ ビルドするプラットフォームと実行するプラットフォームが異なる場合は `--platform linux/amd64` などのオプションをつける
 ※ Manveの依存ライブラリダウンロードを毎回実行するのを避けるため、ローカルの .m2 ディレクトリをマウントするように `-v $HOME/.m2:/home/default/.m2` オプションをつけている。
@@ -59,7 +68,7 @@ podman build . -f docker/Dockerfile -v $HOME/.m2:/home/default/.m2 -t albumapi-j
 ローカルでビルドして、その成果物をコンテナにする場合
 ```
 mvn package
-podman build . -f docker/Dockerfile.runtime -t albumapi-java
+podman build . -f docker/Dockerfile -t albumapi-java
 ```
 ※ ビルドするプラットフォームと実行するプラットフォームが異なる場合は `--platform linux/amd64` などのオプションをつける
 
@@ -77,7 +86,7 @@ podman run -p 8080:8080 albumapi-java
 
 ```
 oc new-project albumapp
-oc new-app registry.redhat.io/ubi9/openjdk-17:latest~https://github.com/akubicharm/containerapps-albumapi-java \
+oc new-app registry.redhat.io/ubi9/openjdk-21:latest~https://github.com/akubicharm/containerapps-albumapi-java \
 --strategy=source \
 --name albumapi \
 --context-dir=.
@@ -90,7 +99,7 @@ JARファイルを指定してコンテナイメージを作成する場合は�
 2. コンテナイメージのビルド
 
 ```
-oc new-app --name albumapi --binary --image=registry.redhat.io/ubi9/openjdk-17:latest --strategy=source
+oc new-app --name albumapi --binary --image=registry.redhat.io/ubi9/openjdk-21:latest --strategy=source
 oc start-build albumapi --from-dir=target
 ```
 
@@ -125,7 +134,7 @@ oc create route edge albumapi --service=albumapi
 
 * s2i ビルドの機能を使ったマニフェストの作成
 ```
-oc new-app registry.redhat.io/ubi9/openjdk-17:latest~https://github.com/akubicharm/containerapps-albumapi-java \
+oc new-app registry.redhat.io/ubi9/openjdk-21:latest~https://github.com/akubicharm/containerapps-albumapi-java \
 --name albumapi \
 --context-dir=. \
 --dry-run -o yaml > app.yaml
@@ -152,14 +161,3 @@ kubectl create deployment albumapi --image=quay.io/keomizo_redhat/albumapi-java 
 ```
 kubectl create service clusterip albumapi --tcp=8080:80 --dry-run=client -o yaml > service.yaml
 ```
-
-
-<!-- 
-# Original Contents ... Azure Container Apps Album API
-
-This is the companion repository for the [Azure Container Apps code-to-cloud quickstart](https://docs.microsoft.com/en-us/azure/container-apps/quickstart-code-to-cloud?tabs=bash%2Cjava&pivots=acr-remote).
-
-This backend Album API sample is available in other languages:
-
-| [C#](https://github.com/azure-samples/containerapps-albumapi-csharp) | [JavaScript](https://github.com/azure-samples/containerapps-albumapi-javascript) | [Go](https://github.com/azure-samples/containerapps-albumapi-go) | [Python](https://github.com/azure-samples/containerapps-albumapi-python) |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------ | -->
